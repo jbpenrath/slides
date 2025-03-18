@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,wdth,slnt@8..144,100..1000,25..151,-10..0&display=block');
+
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #FAF7F7;
+    color: #1A1717;
+    display: grid;
+    place-items: center;
+    font-family: 'Andale Mono';
+    font-family: 'Roboto Flex';
+}
+
+h1 {
+    font-size: 10vw;
+    text-align: center;
+    /* font-style: italic; */
+    /* font-weight: bold; */
+    /* font-synthesis: none; */
+    font-weight: 789; /* Weight 'wght' axis */
+    font-variation-settings: 'wdth' 20, 'slnt' -10; /* Width 'wdth' axis */
+}

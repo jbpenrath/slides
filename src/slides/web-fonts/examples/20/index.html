@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Font - Unicorn</title>
+    <link rel="stylesheet" href="./style.css">
+    <style id="custom-palette">
+
+    </style>
+</head>
+<body>
+    <form>
+        <input type="range" min="0" max="100" value="0" id="horn-size" />
+    </form>
+    <h1 contenteditable="true">
+        &lt;h1 &gt;
+        <br \>
+        It works!
+        <br \>
+        &lt;h1 \&gt;
+    </h1>
+    <script>
+        const PALETTE = [
+            '#e0659d',
+            '#ffffff',
+            '#e0659d',
+            '#fffded',
+            '#ffd3e5',
+            '#ffff96',
+            '#e0659d',
+            '#e0659d',
+            '#ff7b8b',
+            '#ffb380',
+            '#ffff96',
+            '#74f7c2',
+            '#9fb5fc',
+            '#e36eff'
+        ];
+        // const PALETTE = [
+        //     "#382900",
+        //     "#ffffff",
+        //     "#173126",
+        //     "#fff8e5",
+        //     "#80c6a8",
+        //     "#ffa238",
+        //     "#163126",
+        //     "#173126",
+        //     "#275440",
+        //     "#36785b",
+        //     "#469b76",
+        //     "#5db690",
+        //     "#80c6a8",
+        //     "#a4d6c0"
+        // ]
+        const form = document.forms[0];
+        const paletteStyle = document.getElementById('custom-palette')
+        updatePalette();
+
+        function createColorInput(id, defaultValue) {
+            const field = document.createElement('div');
+            field.classList.add('color-input')
+            const input = document.createElement('input');
+            input.id = id;
+            input.type = 'color';
+            input.setAttribute('value', defaultValue);
+            field.appendChild(input);
+            form.appendChild(field);
+        }
+
+        PALETTE.forEach((defaultValue, index) => {
+            createColorInput(`color-${index}`, defaultValue);
+        });
+
+        form.addEventListener('input', (event) => {
+            const value = event.target.value;
+            const id = event.target.id;
+            if (id === 'horn-size') {
+                updateHornSize(value);
+            }
+            else {
+                const colorIndex = id.replace('color-', '');
+                PALETTE[colorIndex] = value;
+                updatePalette();
+            }
+        })
+
+        function updatePalette() {
+            paletteStyle.innerText = `
+            @font-palette-values --unicorn-custom {
+                font-family: Unicorn;
+                base-palette: 2;
+                override-colors:
+                    ${PALETTE.map((color, index) => `${index} ${color}`).join(',')}
+                ;
+            }
+            `
+        }
+
+        function updateHornSize(value) {
+            const hornSize = 200 - parseInt(value, 10);
+            document.querySelector('h1').style.setProperty('--horn-size', hornSize);
+        }
+    </script>
+</body>
+</html>

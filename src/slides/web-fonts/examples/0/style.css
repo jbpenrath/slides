@@ -1,0 +1,289 @@
+/* == Fonts == */
+@font-face {
+    font-family: "Mundial Narrow";
+    src: url("https://use.typekit.net/af/5adb11/000000000000000077566f6b/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("woff2"), url("https://use.typekit.net/af/5adb11/000000000000000077566f6b/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("woff"), url("https://use.typekit.net/af/5adb11/000000000000000077566f6b/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("opentype");
+    font-display: block;
+    font-style: normal;
+    font-weight: 100 900;
+    font-stretch: normal;
+}
+
+/* Literata */
+@font-face {
+    font-family: "Literata";
+    src: url("https://use.typekit.net/af/ca9af9/00000000000000007739eb3e/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2");
+    font-display: auto;
+    font-style: normal;
+    font-weight: 200 900;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: "Literata";
+    src: url("https://use.typekit.net/af/e08465/00000000000000007740dd8a/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2");
+    font-display: auto;
+    font-style: italic;
+    font-weight: 200 900;
+    font-stretch: normal;
+}
+
+
+/* == Globals */
+:root {
+    font-size: 18px;
+}
+
+body {
+    font-family: 'Literata', serif;
+    max-width: 1280px;
+    font-size: 18px;
+    margin: 0 auto;
+    padding-inline: 1rem;
+    margin-bottom: 100px;
+}
+
+abbr {
+    cursor: help;
+    background: #a6e5f8;
+    border-radius: 0.25rem;
+    padding-inline: 0.25rem;
+    font-variant-caps: all-small-caps;
+}
+
+.fraction {
+    font-variant-numeric: diagonal-fractions;
+}
+
+.molecule {
+    font-feature-settings: 'sinf' 1; 
+}
+
+.fw-bold {
+    font-weight: 600;
+}
+
+/* == Wrapper */
+.wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.column {
+    flex: 1;
+}
+
+main.column {
+    flex: 2;
+    max-width: 760px;
+}
+
+@media screen and (max-width: 1100px) {
+    .column:first-child {
+        display: none;
+    }
+}
+
+/* == Header */
+.header {
+    text-align: center;
+    width: 100%;
+    padding-block: 3rem 1.5rem;
+}
+
+.header__title {
+    display: inline-block;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(3rem, 7.8vw, 4.8rem);
+    line-height: 1.2;
+    position: relative;
+    overflow: hidden;
+}
+
+/*
+    After element to compare optical sized font according to the font size
+    The original title has a font size of 4.8rem and this element has a
+    font size of 1rem scaled up to 4.8rem.
+
+*/
+h1, .h1, h2, h3, h4, h5, h6 {
+    /* font-optical-sizing: none; */
+}
+
+.header__title:after {
+    display: none;
+    content: 'ClermonT\'imes';
+    font-size: 1rem;
+    transform: scale(4.8);
+    transform-origin: bottom center;
+    line-height: 1.2;
+    color: red;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.header__metadata {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.header__metadata__item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 16px;
+}
+
+.weather {
+    display: inline-block;
+}
+
+.weather__icon {
+    display: inline-block;
+    font-size: 1.1rem;
+    line-height: 1rem;
+    vertical-align: middle;
+    margin-right: 0.25rem;
+}
+/* == Article */
+.article__illustration {
+    display: block;
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+    z-index: -1;
+}
+
+.article__illustration-wrapper {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 55%);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.article__content-wrapper {
+    margin-top: -250px;
+    padding-inline: 2rem;
+}
+
+.article__title {
+    font-size: 1.9rem;
+    line-height: 1.6;
+}
+
+.article__metadata {
+    font-size: 0.825rem;
+    font-weight: 500;
+
+    &:before {
+        content: "";
+        background: currentColor;
+        height: 1.2em;
+        width: 2px;
+        margin-right: 0.5rem;
+        display: inline-block;
+        /*
+            Tricks to vertically align the before element with the text
+            https://blog.kizu.dev/cap-height-align/
+        */
+        vertical-align: middle;
+        margin-top: calc(1ex - 1cap);
+    }
+}
+
+.article__intro {
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.article__content {
+    line-height: 1.6;
+}
+
+/* == Sidebar */
+.sidebar {
+    position: sticky;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 200px;
+}
+
+.block{
+    background-color: #E0E0E0;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
+.block > h2 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    list-style: 1;
+    margin-block: 0.2rem;
+}
+
+.block > p,
+.block > dl {
+    font-size: 0.9rem;
+    margin-block: 0rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.block > dl {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0.5rem;
+    margin-block: 1rem 0.5rem;
+}
+
+.block > dl > dt {
+    font-weight: 600;
+}
+
+.block > dl > dd {
+    text-align: right;
+}
+
+.ads > img {
+    border-radius: 0.5rem;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 0.5rem;
+}
+
+.ads > p {
+    text-align: center;
+}
+
+.ads > button {
+    font-family: 'Roboto Flex';
+    letter-spacing: 0.05em;
+    background-color: #000;
+    color: #FFF;
+    padding: 1rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    width: 100%;
+    line-height: 1;
+    font-variation-settings: 'wdth' 100, 'wght' 300;
+    transition: all 0.3s ease-in-out;
+    margin-top: 0.5rem;
+
+}
+
+.ads > button:hover {
+    background-color: #81c995;
+    font-variation-settings: 'wdth' 150, 'wght' 400;
+    transform: scale(0.96);
+}
+
+.gains {
+    padding: 0.5rem 1rem;
+}

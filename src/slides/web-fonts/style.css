@@ -1,0 +1,525 @@
+@layer vendors, base;
+@import url('https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@0..200,0..24&display=auto');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=auto');
+@font-face {
+    font-family:"Mundial Narrow";
+    src: url("https://use.typekit.net/af/5adb11/000000000000000077566f6b/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("woff2");
+    font-display:auto;
+    font-style:normal;
+    font-weight:100 900;
+    font-stretch:normal;
+}
+
+
+/* == Utils */
+.fw-100 {
+    font-weight: 100;
+}
+.fw-700 {
+    font-weight: 670;
+}
+.ff-nabla {
+    font-family: "Nabla", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.ff-mono {
+    font-family: var(--r-code-font);
+    font-weight: 700;
+}
+
+.color-accent {
+    color: var(--color-accent);
+}
+
+.color-neutral-500 {
+    color: var(--color-neutral-500);
+}
+
+.rows {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid__row--full-width {
+    grid-column: 1 / -1;
+}
+
+@layer base {
+
+    /* == Globals */
+    :root {
+        --color-accent: #FDB307;
+        --color-accent-100: hsla(42, 98%, 75%, 0.8);
+        --color-neutral-100: #FAF7F7;
+        --color-neutral-500: #8A8787;
+        --color-neutral-900: #1A1717;
+        --r-background-color: var(--color-neutral-100);
+        --r-main-color: var(--color-neutral-900);
+        --r-main-font: 'Mundial Narrow', serif;
+        --r-heading-color: var(--color-neutral-900);
+        --r-heading-font: 'Mundial Narrow', serif;
+        --r-heading-text-transform: normal;
+        --r-link-color: var(--color-neutral-900);
+        --r-link-color-hover: inherit;
+        --r-link-decoration: underline;
+        --r-code-font: "IBM Plex Mono", monospace;
+        --r-selection-background-color: var(--color-accent-100);
+        --r-selection-color: var(--color-neutral-900);
+    }
+
+    body {
+        perspective: 900px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left;
+        margin-bottom: 0;
+    }
+
+    h1 {
+        font-size: 260px;
+        font-weight: 490;
+        line-height: 240px;
+    }
+
+    h2 { 
+        font-weight: 670;
+        font-size: 130px;
+        line-height: 1;
+    }
+
+    pre {
+        box-shadow: none;
+    }
+
+    a {
+        transition: font-weight 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    a:hover {
+        font-weight: 670;
+    }
+
+    li {
+        line-height: 120px;
+    }
+
+    /* == Reveal.js overrides */
+    .reveal .progress {
+        background-color: color-mix(in srgb, var(--color-accent), transparent 60%);
+        color: var(--color-accent);
+    }
+
+    /* == Aside */
+    .refs {
+        position: fixed;
+        bottom: calc(var(--r-controls-spacing) * 2);
+        left: max(0px, calc(120px + (100vw - 1920px) / 2));
+        z-index: 100;
+        font-size: 14px;
+        font-weight: 490;
+        display: flex;
+        font-kerning: none;
+        z-index: 11;
+        pointer-events: all;
+
+        & a > .icon {
+            height: 1em;
+            width: 1em;
+            vertical-align: middle;
+            margin-top: calc(1ex - 1cap);
+            margin-right: 0.25em;
+        }
+
+        & a {
+            display: inline-block;
+            box-sizing: border-box;
+            width: 120px;
+            text-align: center;
+        }
+
+        & a:hover {
+            font-weight: 600;
+        }
+    }
+
+    /* == Backgrounds */
+    .backgrounds:after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(/images/bg-noise.png);
+        background-size: 100% 100%;
+        z-index: 2;
+    }
+
+    section.small-grid:after,
+    section.big-grid:after {
+        content: '';
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 4200px;
+        height: 4200px;
+        background-image: url(/images/bg-grid-30.png);
+        background-position: 0 -13px;
+        z-index: -1;
+    }
+
+    section.big-grid:after {
+        background-size: 120px 120px;
+    }
+    section.small-grid:after {
+        background-size: 60px 60px;
+    }
+
+    /* == Slides */
+    .slide {
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .slide h1,
+    .slide h1 span,
+    .slide h2,
+    .slide h2 span {
+        transition-property: font-weight, font-variation-settings;
+        transition-duration: 500ms, 500ms;
+        transition-delay: 70ms, 0ms;
+        transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .stack.future h1, .stack.future h1 span,
+    .stack.future h2, .stack.future h2 span,
+    .stack.past h1, .stack.past h1 span,
+    .stack.past h2, .stack.past h2 span,
+    .future h1, .future h1 span,
+    .future h2, .future h2 span,
+    .past h1, .past h1 span,
+    .past h2, .past h2 span {
+        font-weight: 100 !important;
+        font-variation-settings: "EDPT" 40, "EHLT" 0 !important;
+    }
+
+    .stack.future h2 + .external-link,
+    .stack.past h2 + .external-link,
+    .future h2 + .external-link,
+    .past h2 + .external-link {
+        scale: 0.5;
+        opacity: 0;
+        transition-duration: 0;
+    }
+
+    .slide__header {
+        margin-left: -10px;
+        margin-top: 10px;
+    }
+
+    .slide__header > div:first-child {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .slide__header .external-link {
+        display: inline-block;
+        height: 48px;
+        width: 48px;
+        opacity: 1;
+        transition-property: opacity, scale;
+        transition-duration: 350ms, 500ms;
+        transition-delay: 400ms, 150ms;
+        transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .slide__header .external-link > .icon {
+        height: 100%;
+        width: 100%;
+    }
+
+    .slide__header > .css-property__list {
+        clear: left;
+        margin-left: 10px;
+    }
+
+    .slide__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        margin-top: -60px;
+        width: 100%;
+        max-width: 1280px;
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    .slide__body > h3 {
+        font-size: 130px;
+        font-weight: 260;
+        line-height: 172px;
+        margin-top: 8px;
+    }
+
+    .cover h1 {
+        padding-top: 223px;
+        padding-left: 115px;
+    }
+
+    .css-property__list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: 50%;
+    }
+
+    .css-property {
+        font-family: var(--r-code-font);
+        padding: 5px 16px;
+        font-size: 28px;
+        line-height: 1.2;
+        background: var(--color-accent);
+        font-weight: 700;
+        border-radius: 12px;
+    }
+
+    /* == Font color */
+    @font-palette-values --nabla-0 {
+        font-family: "Nabla";
+        base-palette: 0;
+    }
+    @font-palette-values --nabla-1 {
+        font-family: "Nabla";
+        base-palette: 1;
+    }
+    @font-palette-values --nabla-2 {
+        font-family: "Nabla";
+        base-palette: 2;
+    }
+    @font-palette-values --nabla-3 {
+        font-family: "Nabla";
+        base-palette: 3;
+    }
+    @font-palette-values --nabla-4 {
+        font-family: "Nabla";
+        base-palette: 4;
+    }
+    @font-palette-values --nabla-5 {
+        font-family: "Nabla";
+        base-palette: 5;
+    }
+    @font-palette-values --nabla-6 {
+        font-family: "Nabla";
+        base-palette: 6;
+    }
+    @font-palette-values --nabla-custom {
+        font-family: "Nabla";
+        base-palette: 0;
+        override-colors:
+            0 #1A1717,
+            1 #2A2727,
+            2 #1A1717,
+            3 #5A5757,
+            4 #1A1717,
+            5 #CAC7C7,
+            6 #3A3737,
+            7 #DAD7D7,
+            8 #DAD7D7,
+            9 #FAF7F7;
+    }
+    @font-palette-values --nabla-cmjn {
+        font-family: "Nabla";
+        base-palette: 0;
+        override-colors:
+            0 black,
+            1 magenta,
+            2 transparent,
+            3 magenta,
+            4 transparent,
+            5 cyan,
+            6 cyan,
+            7 yellow,
+            8 yellow,
+            9 black;
+    }
+
+    .font-color h1 {
+        font-palette: --nabla-custom;
+        margin-top: -50px;
+        font-variation-settings: "EDPT" 150, "EHLT" 6;
+    }
+
+    .ff-nabla--palette-0 {
+        font-palette: --nabla-0;
+    }
+    .ff-nabla--palette-1 {
+        font-palette: --nabla-1;
+    }
+    .ff-nabla--palette-2 {
+        font-palette: --nabla-2;
+    }
+    .ff-nabla--palette-3 {
+        font-palette: --nabla-3;
+    }
+    .ff-nabla--palette-4 {
+        font-palette: --nabla-4;
+    }
+    .ff-nabla--palette-5 {
+        font-palette: --nabla-5;
+    }
+    .ff-nabla--palette-6 {
+        font-palette: --nabla-6;
+    }
+    .ff-nabla--palette-cmjn {
+        font-palette: --nabla-cmjn;
+        font-variation-settings: "EDPT" 110, "EHLT" 5;
+    }
+    .ff-nabla--palette-custom {
+        font-palette: --nabla-custom;
+        font-size: 240px;
+    }
+
+    .font-palette__list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0 70px;
+        list-style: none;
+        flex: inherit;
+        margin: auto;
+        padding-top: 60px;
+    }
+
+    .font-palette__list > li {
+        font-size: 240px;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    /* == Slide formats */
+    .font-format__list {
+        margin-top: 115px;
+        gap: 80px;
+        max-width: inherit;
+        align-items: flex-start;
+        flex: inherit;
+        justify-content: flex-start;
+
+    }
+
+    .font-format {
+        text-align: left;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .font-format__illustration {
+        height: 240px;
+        width: 240px;
+    }
+
+    .font-format__extension {
+        font-size: 130px;
+        font-weight: 690;
+        line-height: 120px;
+    }
+
+    .font-format__name {
+        color: var(--color-neutral-500);
+        font-weight: 200;
+        font-size: 48px;
+        line-height: 40px;
+        margin: 0;
+    }
+
+    /* == Slide tools */
+    .tool__logo {
+        margin: 0;
+    }
+    .tool__name {
+        margin: 0;
+        line-height: 1;
+    }
+    .slide-tools .tool:nth-child(1) {
+        margin-top: 3px;
+    }
+    
+    .slide-tools .tool:nth-child(2) {
+        margin-top: -27px;
+    }
+
+    /* == Rules */
+    .rules {
+        position: fixed;
+        display: flex;
+        z-index: -1;
+        top: 211px;
+        right: 240px;
+    }
+
+    .rule {
+        font-family: var(--r-code-font);
+        font-size: 20px;
+        background-color: var(--color-accent);
+        line-height: 0.9;
+        display: block;
+        width: max-content;
+        text-align: left;
+        height: 19px;
+        padding: 4px 10px;
+        font-weight: 490;
+        position: absolute;
+        font-variant-caps: all-small-caps;
+
+        &:after {
+            height: 2px;
+            border-image-source: url(/images/border-dashed.png);
+            border-image-slice: 0 0 2 0;
+            border-image-width: 0 0 2px 0;
+            border-image-outset: 0 0 0 0;
+            border-image-repeat: repeat;
+            content: '';
+            display: block;
+            position: fixed;
+            margin-top: 2px;
+            left: -1500px;
+            right: -1500px;
+        }
+    }
+
+    .rule:nth-child(2) {
+        top: 50px;
+    }
+    .rule:nth-child(3) {
+        top: 170px;
+    }
+    .rule:nth-child(4) {
+        top: 220px;
+    }
+}

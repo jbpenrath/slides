@@ -1,0 +1,57 @@
+@font-face {
+    font-family:"Sway";
+    src:
+        url("https://use.typekit.net/af/39afd6/000000000000000077510473/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),
+        url("https://use.typekit.net/af/39afd6/000000000000000077510473/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),
+        url("https://use.typekit.net/af/39afd6/000000000000000077510473/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+    font-display:auto;
+    font-style:normal;
+    font-weight:300 900;
+    font-stretch:normal;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+body {
+    --color-background: #9ac6d1;
+    --color: #346e7d;
+    --color-background-anger: #f43b35;
+    --color-background-anger-2: #f5241d;
+    --color-anger: #671e1b;
+    --color-anger-2: #4c100e;
+    background-color: var(--color-background);
+    color: var(--color);
+    font-family: 'Sway', sans-serif;
+    font-size: 15vw;
+    display: grid;
+    place-items: center;
+    animation: anger 2s cubic-bezier(0.87, 0, 0.13, 1) infinite alternate-reverse;
+    font-variation-settings: 'wght' 900, 'CNST' 100;
+}
+
+@keyframes anger {
+    0% {
+        font-variation-settings: 'wght' 900, 'CNST' 100;
+        background-color: var(--color-background);
+        color: var(--color);
+    }
+    70% {
+        font-variation-settings: 'wght' 900, 'CNST' 30;
+        background-color: var(--color-background-anger);
+        color: var(--color-anger);
+    }
+    95% {
+        font-variation-settings: 'wght' 900, 'CNST' 1;
+        background-color: var(--color-background-anger-2);
+        color: var(--color-anger-2);
+    }
+    100% {
+        font-variation-settings: 'wght' 900, 'CNST' 1;
+        background-color: var(--color-background-anger-2);
+        color: var(--color-anger-2);
+    }
+}
