@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <title>Les web fonts en 2025</title>
+  <meta charset="UTF-8" />
+  <meta name="author" content="JB PENRATH" />
+  <meta name="date" content="2025-03-18" />
+  <meta name="description" content="Un talk pour ClermonT'ech sur l'état de l'art des web fonts en 2025." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-github" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-link" viewBox="0 0 24 24">
+      <path d="M10 5H8.2c-1.12 0-1.68 0-2.108.218a1.999 1.999 0 0 0-.874.874C5 6.52 5 7.08 5 8.2v7.6c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874c.427.218.987.218 2.105.218h7.606c1.118 0 1.677 0 2.104-.218.377-.192.683-.498.875-.874.218-.428.218-.987.218-2.105V14m1-5V4m0 0h-5m5 0-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+  <script type="module" crossorigin src="/slides/assets/webFontsSlides-jk_BWW87.js"></script>
+  <link rel="stylesheet" crossorigin href="/slides/assets/webFontsSlides-D48dq3Yb.css">
+</head>
+
+<body data-transition="none">
+  <div class="reveal">
+    <div class="slides">
+      <section class="slide cover big-grid">
+        <div class="title">
+          <h1>Typographie<br />Web.</h1>
+          <div class="rules">
+            <span class="rule">Cap height</span>
+            <span class="rule">X-height</span>
+            <span class="rule">Baseline</span>
+            <span class="rule">Descender height</span>
+          </div>
+        </div>
+      </section>
+      <section class="slide small-grid">
+        <header class="slide__header">
+          <h2>Les formats de font</h2>
+        </header>
+        <div class="slide__body grid grid--2 font-format__list">
+          <div class="fragment font-format grid__row--full-width" data-fragment-index="50">
+            <div>
+              <h3 class="font-format__extension">.woff<span style="display: inline-block;" class="fragment fade-left color-accent">2</span></h3>
+              <p class="font-format__name">Web Open Font Format</p>
+            </div>
+          </div>
+          <div class="fragment font-format" data-fragment-index="30">
+            <div>
+              <h3 class="font-format__extension">.eot</h3>
+              <p class="font-format__name">Embedded OpenType</p>
+            </div>
+          </div>
+          <div class="fragment font-format" data-fragment-index="40">
+            <div>
+              <h3 class="font-format__extension">.svg</h3>
+            </div>
+          </div>
+          <div class="fragment font-format" data-fragment-index="10">
+            <div>
+              <h3 class="font-format__extension">.ttf</h3>
+              <p class="font-format__name">TrueType Font</p>
+            </div>
+            <img class="font-format__illustration fragment" data-fragment-index="21" src="/slides/images/font-format-ttf.svg" alt="TrueType Stroke Method" />
+          </div>
+          <div class="fragment font-format"  data-fragment-index="20">
+            <div>
+              <h3 class="font-format__extension">.otf</h3>
+              <p class="font-format__name">OpenType Font</p>
+            </div>
+            <img class="font-format__illustration fragment"  data-fragment-index="21" src="/slides/images/font-format-cff.svg" alt="TrueType Stroke Method" />
+          </div>
+        </div>
+      </section>
+      <section>
+        <section class="slide cover big-grid">
+          <div class="title">
+            <h1>
+              <span class="fw-100">OpenType</span>
+              <br />
+              <span class="fw-700">features</span>
+            </h1>
+            <div class="rules">
+              <span class="rule">Cap height</span>
+              <span class="rule">X-height</span>
+              <span class="rule">Baseline</span>
+              <span class="rule">Descender height</span>
+            </div>
+          </div>
+        </section>
+        <section class="slide small-grid">
+          <header class="slide__header">
+            <div>
+              <h2>Font features</h2>
+              <a class="external-link" href="./examples/0/" target="_blank">
+                <svg class="icon">
+                  <use href="#icon-link"></use>
+                </svg>
+              </a>
+          </div>
+          <ul class="css-property__list">
+            <li class="css-property">font-kerning</li>
+            <li class="css-property">font-variant-*</li>
+            <li class="css-property">font-feature-settings</li>
+          </ul>
+          </header>
+          <div class="slide__body">
+            <p class="ff-mono">case, liga, sinf, tnums, locl, pnum,</br>kern, mark, mkmk, frac, subs, sups ...</p>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section class="slide cover big-grid">
+          <div class="title">
+            <h1>
+              <span class="fw-100">OpenType</span>
+              <br />
+              <span class="fw-700">axes</span>
+            </h1>
+            <div class="rules">
+              <span class="rule">Cap height</span>
+              <span class="rule">X-height</span>
+              <span class="rule">Baseline</span>
+              <span class="rule">Descender height</span>
+            </div>
+          </div>
+        </section>
+        <section class="slide small-grid">
+          <header class="slide__header">
+            <div>
+              <h2>Registered axes</h2>
+              <a class="external-link" href="./examples/10/" target="_blank">
+                <svg class="icon">
+                  <use href="#icon-link"></use>
+                </svg>
+              </a>
+            </div>
+          <ul class="css-property__list">
+            <li class="css-property">font-weight</li>
+            <li class="css-property">font-style</li>
+            <li class="css-property">font-synthesis</li>
+            <li class="css-property">font-stretch</li>
+            <li class="css-property">font-optical-sizing</li>
+          </ul>
+          </header>
+          <div class="slide__body">
+            <p class="ff-mono">ital, opsz, slnt, wght, wdth</p>
+          </div>
+        </section>
+        <section class="slide small-grid">
+          <header class="slide__header">
+          <div>
+            <h2>Custom axes</h2>
+            <a class="external-link" href="./examples/12/" target="_blank">
+              <svg class="icon">
+                <use href="#icon-link"></use>
+              </svg>
+            </a>
+          </div>
+          <ul class="css-property__list">
+            <li class="css-property">font-variation-settings</li>
+          </ul>
+          </header>
+          <div class="slide__body">
+            <h3>Sky is the limit.</h3>
+            <p class="ff-mono color-neutral-500">GRAD, CNST, PUMP, BBLE, FLOT, XOPQ, ...</p>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section class="slide cover big-grid font-color">
+          <div class="title">
+            <h1>
+              <span class="ff-nabla">Color fonts</span>
+            </h1>
+            <div class="rules">
+              <span class="rule">Cap height</span>
+              <span class="rule">X-height</span>
+              <span class="rule">Baseline</span>
+              <span class="rule">Descender height</span>
+            </div>
+          </div>
+        </section>
+        <section class="slide small-grid">
+          <header class="slide__header">
+            <div>
+              <h2>Palettes</h2>
+              <a class="external-link" href="./examples/20/" target="_blank">
+                <svg class="icon">
+                  <use href="#icon-link"></use>
+                </svg>
+              </a>
+            </div>
+          <ul class="css-property__list">
+            <li class="css-property">font-palette</li>
+            <li class="css-property">@font-palette-values</li>
+          </ul>
+          </header>
+          <ul class="slide__body font-palette__list">
+            <li class="ff-nabla ff-nabla--palette-0">0</li>
+            <li class="ff-nabla ff-nabla--palette-1">1</li>
+            <li class="ff-nabla ff-nabla--palette-2">2</li>
+            <li class="ff-nabla ff-nabla--palette-3">3</li>
+            <li class="ff-nabla ff-nabla--palette-4">4</li>
+            <li class="ff-nabla ff-nabla--palette-5">5</li>
+            <li class="ff-nabla ff-nabla--palette-6">6</li>
+            <li class="ff-nabla ff-nabla--palette-cmjn">???</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section class="slide cover big-grid">
+          <div class="title">
+            <h1>
+              <span class="fw-700">Anatomie</span>
+              <br />
+              <span class="fw-100">d'une font</span>
+            </h1>
+            <div class="rules">
+              <span class="rule">Cap height</span>
+              <span class="rule">X-height</span>
+              <span class="rule">Baseline</span>
+              <span class="rule">Descender height</span>
+            </div>
+          </div>
+        </section>
+        <section class="slide slide-tools small-grid">
+          <header class="slide__header">
+          <h2>Les outils</h2>
+          </header>
+          <div class="slide__body rows">
+            <div class="tool">
+              <a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">
+                <img class="tool__logo" src="/slides/images/logo-google-fonts.svg" alt="Google Fonts" />
+                <p class="tool__name">Google<br />Fonts</p>
+              </a>
+            </div>
+            <div class="tool">
+              <a href="https://wakamaifondue.com/" target="_blank" rel="noopener noreferrer">
+                <img class="tool__logo" src="/slides/images/logo-wakamaifondue.png" alt="Wakamai Fondue" />
+                <p class="tool__name">Wakamai<br />Fondue</p>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section class="slide small-grid">
+          <header class="slide__header">
+            <h2>Quelques ressources</h2>
+          </header>
+          <div class="slide__body">
+            <ul class="full-width" style="margin-top: -9px;">
+              <li><a target="_blank" rel="noopener noreferrer" href="https://v-fonts.com">V Fonts</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="https://type-atlas.xyz">Atlas of Type</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="https://typearture.com">Typearture</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="https://www.type-together.com/">Type Together</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="https://otherwherecollective.com">Otherwhere Collective</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="https://open-foundry.com/">Open Foundry</a></li>
+            </ul>
+          </div>
+        </section>
+      </section>
+      <section class="slide cover big-grid">
+        <div class="title">
+          <h1>Merci !</h1>
+        </div>
+        <div class="rules">
+          <span class="rule">Cap height</span>
+          <span class="rule">X-height</span>
+          <span class="rule">Baseline</span>
+          <span class="rule">Descender height</span>
+        </div>
+      </section>
+    </div>
+    <aside class="refs">
+      <a href="https://www.clermontech.org/" target="_blank" rel="noopener noreferrer">ClermonT'ech</a>
+      <a href="https://github.com/jbpenrath" target="_blank" rel="noopener noreferrer">
+        <svg class="icon">
+          <use href="#icon-github"></use>
+        </svg>
+        jbpenrath
+      </a>
+    </aside>
+  </div>
+</body>
+
+</html>
